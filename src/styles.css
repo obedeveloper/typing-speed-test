@@ -6,6 +6,15 @@
   box-sizing: border-box;
 }
 
+html {
+  color-scheme: dark;
+}
+
+@font-face {
+  font-family: 'Sora';
+  src: url('/fonts/Sora-VariableFont_wght.ttf');
+}
+
 :root {
   --Neutral-900: hsl(0, 0%, 7%);
   --Neutral-800: hsl(0, 0%, 15%);

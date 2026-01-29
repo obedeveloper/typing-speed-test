@@ -15,15 +15,6 @@ import '../styles.css';
     />
     <meta name="generator" content={Astro.generator} />
     <title>Frontend Mentor | Typing Speed Test</title>
-    <style>
-      .attribution {
-        font-size: 11px;
-        text-align: center;
-      }
-      .attribution a {
-        color: hsl(228, 45%, 44%);
-      }
-    </style>
   </head>
   <body>
     Personal best: <!-- PB --> WPM WPM: <!-- WPM -->
@@ -47,9 +38,28 @@ import '../styles.css';
     <!-- Test Complete End -->
 
     <div class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge"
-        >Frontend Mentor</a
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge">
+        Frontend Mentor</a
       >. Coded by <a href="#">NIYOMUGISHA Obed</a>.
     </div>
   </body>
 </html>
+
+<style>
+  body {
+    max-width: calc(1024rem / 16);
+    margin-inline: auto;
+    padding-inline: 1rem;
+    font-family: 'Sora', Arial, Helvetica, sans-serif;
+  }
+
+  .attribution {
+    font-size: 11px;
+    text-align: center;
+
+    a {
+      color: hsl(228.1, 64.2%, 66.1%);
+    }
+  }
+</style>
