@@ -1,5 +1,7 @@
 ---
 import '../styles.css';
+import passages from '../lib/data.json';
+import TextArea from '../components/TextArea.svelte';
 ---
 
 <!doctype html>
@@ -17,26 +19,7 @@ import '../styles.css';
     <title>Frontend Mentor | Typing Speed Test</title>
   </head>
   <body>
-    Personal best: <!-- PB --> WPM WPM: <!-- WPM -->
-    Accuracy: <!-- Accuracy -->
-    Time: <!-- Time -->
-
-    Difficulty: Easy Medium Hard Mode: Timed (60s) Passage
-
-    <!-- Passage -->
-
-    Start Typing Test Or click the text and start typing
-
-    <!-- Test Complete Start -->
-
-    Test Complete! Solid run. Keep pushing to beat your high score. WPM: <!-- WPM -->
-    Accuracy: <!-- Accuracy -->
-    Characters: <!-- Correct/Incorrect -->
-
-    Go Again
-
-    <!-- Test Complete End -->
-
+    <TextArea passage={passages.easy[0].text} client:load />
     <div class="attribution">
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge">
