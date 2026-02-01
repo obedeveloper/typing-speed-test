@@ -1,1 +1,40 @@
 @import 'tailwindcss';
+
+@font-face {
+	font-family: 'Sora';
+	src: url('/fonts/Sora-Regular.ttf');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Sora';
+	src: url('/fonts/Sora-SemiBold.ttf');
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: 'Sora';
+	src: url('/fonts/Sora-Bold.ttf');
+	font-weight: 700;
+}
+
+body {
+	@apply bg-neutral-800 text-white;
+	font-family: 'Sora';
+}
+
+.wrapper {
+	--viewport-padding: 16px;
+	display: grid;
+	grid-template-columns: 1fr min(1024rem / 16, 100%) 1fr;
+	padding-inline: var(--viewport-padding);
+
+	& > * {
+		grid-column: 2;
+	}
+}
+
+.full-bleed {
+	grid-column: 1 / -1;
+	margin-inline: calc(var(--viewport-padding) * -1);
+}
