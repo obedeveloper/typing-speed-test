@@ -6,6 +6,7 @@
 	import downArrow from '$lib/assets/icon-down-arrow.svg';
 	import Button from './Button.svelte';
 	import { slide } from 'svelte/transition';
+	import { resolve } from '$app/paths';
 
 	class MenuButton {
 		open = $state(false);
@@ -39,10 +40,12 @@
 
 <header class="wrapper my-4">
 	<div class="mb-6 flex items-center justify-between">
-		<picture>
-			<source srcset={logoLarge} media="(width >= 40rem)" />
-			<img src={logoSmall} alt="Typing Speed Test Logo" />
-		</picture>
+		<a href={resolve('/')}>
+			<picture>
+				<source srcset={logoLarge} media="(width >= 40rem)" />
+				<img src={logoSmall} alt="Typing Speed Test Logo" />
+			</picture>
+		</a>
 		<h2 class="flex h-fit text-lg text-neutral-400">
 			<img src={personalBest} alt="Personal Best Icon" class="mr-2" />
 			<span class="hidden sm:mr-1 sm:inline-block">Personal</span>
