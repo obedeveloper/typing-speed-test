@@ -1,5 +1,5 @@
 <script lang="ts">
-	import globalState from './global-state.svelte';
+	import globalState, { getGlobalContext } from './global-state.svelte';
 	import { data, levels, modes } from '$lib/consts';
 	import SettingsItem from './SettingsItem.svelte';
 
@@ -9,6 +9,8 @@
 			globalState.modeMenu.hideItems();
 		}
 	});
+
+	const globalContext = getGlobalContext();
 </script>
 
 <div class="flex flex-wrap justify-between gap-x-5 gap-y-2 border-b border-neutral-400 pb-3">
@@ -24,14 +26,14 @@
 		<SettingsItem
 			title="Difficulty"
 			items={levels}
-			choosen={levels[2]}
+			choosen={globalContext.level}
 			menuBtn={globalState.difficultyMenu}
-		></SettingsItem>
+		/>
 		<SettingsItem
 			title="Mode"
 			items={modes}
-			choosen={modes[0]}
+			choosen={globalContext.mode}
 			menuBtn={globalState.modeMenu}
-		></SettingsItem>
+		/>
 	</div>
 </div>

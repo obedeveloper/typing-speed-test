@@ -6,9 +6,9 @@
 	import Nav from './Nav.svelte';
 </script>
 
-<header class="wrapper my-4">
+<header class="wrapper py-4">
 	<div class="mb-6 flex items-center justify-between">
-		<a href={resolve('/')}>
+		<a href={resolve('/')} data-sveltekit-reload>
 			<picture>
 				<source srcset={logoLarge} media="(width >= 40rem)" />
 				<img src={logoSmall} alt="Typing Speed Test Logo" />
