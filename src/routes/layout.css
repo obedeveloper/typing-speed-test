@@ -1,10 +1,5 @@
 @import 'tailwindcss';
 
-@font-face {
-	font-family: 'Sora';
-	src: url('./Sora-VariableFont_wght.ttf');
-}
-
 @theme {
 	--font-Sora: 'Sora', Arial, Helvetica, sans-serif;
 
