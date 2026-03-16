@@ -30,7 +30,7 @@
 				['Hard', 'hard']
 			]}
 		></Select>
-		<div class="w-0.75 bg-neutral-500/30 text-transparent">|</div>
+		<div class="hidden w-0.75 bg-neutral-500/30 text-transparent lg:inline">|</div>
 		<Select
 			name="mode"
 			bind:value={mode}
@@ -43,7 +43,7 @@
 </div>
 
 {#snippet Data(label: string, value: string)}
-	<div class="flex flex-col items-center sm:flex-row sm:gap-1">
+	<div class="flex grow flex-col items-center sm:flex-row sm:gap-1">
 		<span class="text-neutral-400">{label}:</span>
 		<span class="text-lg font-bold">{value}</span>
 	</div>

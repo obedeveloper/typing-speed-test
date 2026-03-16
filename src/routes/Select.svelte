@@ -9,7 +9,7 @@
 </script>
 
 <div class="flex items-center gap-2">
-	<select bind:value {name} class="rounded border border-neutral-500 p-0.5 text-center lg:hidden">
+	<select bind:value {name} class="rounded border border-neutral-500 p-1 text-center lg:hidden">
 		{#each options as [label, option] (option)}
 			<option value={option}>{label}</option>
 		{/each}
