@@ -21,15 +21,22 @@
 	--color-yellow-400: hsl(49, 85%, 70%);
 }
 
+@utility container {
+	@apply mx-auto px-6;
+}
+
+html {
+	@apply scheme-dark;
+}
+
 body {
-	@apply font-Sora;
+	@apply bg-neutral-800 font-Sora;
 }
 
 .attribution {
-	font-size: 11px;
-	text-align: center;
+	@apply text-center text-sm;
 
 	a {
-		color: hsl(228, 45%, 44%);
+		@apply text-blue-400;
 	}
 }
