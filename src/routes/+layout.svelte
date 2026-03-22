@@ -5,13 +5,16 @@
 
 	let { children, data } = $props();
 
+	// svelte-ignore state_referenced_locally
 	setSettings(
 		new Settings({
-			randomLevel: () => data.randomLevel,
-			randomMode: () => data.randomMode
+			randomLevel: data.randomLevel,
+			randomMode: data.randomMode
 		})
 	);
-	setPassage(new Passage(() => data.randomPassage));
+
+	// svelte-ignore state_referenced_locally
+	setPassage(new Passage(data.randomPassage));
 </script>
 
 <svelte:head>

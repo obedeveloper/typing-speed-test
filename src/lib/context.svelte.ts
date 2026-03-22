@@ -2,8 +2,8 @@ import { createContext } from 'svelte';
 import type { Level, Mode } from './types';
 
 interface SettingsParams {
-	randomLevel: () => Level;
-	randomMode: () => Mode;
+	randomLevel: Level;
+	randomMode: Mode;
 }
 
 export class Settings {
@@ -13,8 +13,8 @@ export class Settings {
 
 	constructor(params: SettingsParams) {
 		const { randomLevel, randomMode } = params;
-		this.difficulty = $state(randomLevel());
-		this.mode = $state(randomMode());
+		this.difficulty = $state(randomLevel);
+		this.mode = $state(randomMode);
 	}
 
 	set level(value: Level) {
@@ -30,8 +30,8 @@ export class Settings {
 export class Passage {
 	value: string;
 
-	constructor(passage: () => string) {
-		this.value = $state(passage());
+	constructor(passage: string) {
+		this.value = $state(passage);
 	}
 }
 
