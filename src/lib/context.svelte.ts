@@ -1,5 +1,6 @@
 import { createContext } from 'svelte';
 import type { Level, Mode } from './types';
+import { testData } from './data.svelte';
 
 interface SettingsParams {
 	randomLevel: Level;
@@ -8,22 +9,37 @@ interface SettingsParams {
 
 export class Settings {
 	private difficulty: Level;
-	mode: Mode;
+	private _mode_: Mode;
 	levelUpdated = $state(false);
 
 	constructor(params: SettingsParams) {
 		const { randomLevel, randomMode } = params;
 		this.difficulty = $state(randomLevel);
-		this.mode = $state(randomMode);
+		this._mode_ = $state(randomMode);
 	}
 
 	set level(value: Level) {
-		this.levelUpdated = true;
-		this.difficulty = value;
+		if (value !== this.difficulty) {
+			this.levelUpdated = true;
+			this.difficulty = value;
+
+			testData.restart();
+		}
+	}
+
+	set mode(value: Mode) {
+		if (value !== this._mode_) {
+			this._mode_ = value;
+			testData.restart();
+		}
 	}
 
 	get level() {
 		return this.difficulty;
+	}
+
+	get mode() {
+		return this._mode_;
 	}
 }
 

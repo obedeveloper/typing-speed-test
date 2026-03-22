@@ -3,12 +3,13 @@
 	import Select from './Select.svelte';
 	import passagesData from '$lib/data.json';
 	import { getRandomItem } from '$lib';
+	import { testData } from '$lib/data.svelte';
 
-	const data = [
-		['WPM', '0'],
-		['Accuracy', '100%'],
-		['Time', '0:60']
-	];
+	const data = $derived([
+		['WPM', Math.round(testData.wpm).toString()],
+		['Accuracy', `${Math.round(testData.accuracy * 100) / 100}%`],
+		['Time', `0:${testData.time}`]
+	]);
 
 	const settings = getSettings();
 	const passage = getPassage();
@@ -20,6 +21,20 @@
 		if (settings.levelUpdated) {
 			passage.value = randomPassage;
 		}
+
+		const intervalId = setInterval(() => {
+			if (testData.testStarted && testData.time !== 0) {
+				testData.time--;
+			}
+
+			if (testData.testStarted) {
+				testData.timerInSecs++;
+			}
+		}, 1e3);
+
+		return () => {
+			clearInterval(intervalId);
+		};
 	});
 </script>
 
@@ -47,7 +62,7 @@
 			name="mode"
 			bind:value={settings.mode}
 			options={[
-				['Timed(60s)', 'timed'],
+				['Timed (60s)', 'timed'],
 				['Passage', 'passage']
 			]}
 		></Select>
