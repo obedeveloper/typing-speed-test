@@ -1,21 +1,22 @@
 <script lang="ts">
 	import './layout.css';
-	import HeaderSec1 from './HeaderSec1.svelte';
-	import HeaderSec2 from './HeaderSec2.svelte';
 	import favicon from '$lib/assets/favicon-32x32.png';
+	import { Passage, setPassage, setSettings, Settings } from '$lib/context.svelte';
 
-	let { children } = $props();
+	let { children, data } = $props();
+
+	setSettings(
+		new Settings({
+			randomLevel: () => data.randomLevel,
+			randomMode: () => data.randomMode
+		})
+	);
+	setPassage(new Passage(() => data.randomPassage));
 </script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
 </svelte:head>
-
-<header class="container flex flex-col gap-4 py-3 sm:py-6">
-	<HeaderSec1></HeaderSec1>
-	<HeaderSec2></HeaderSec2>
-	<hr class="border border-neutral-500" />
-</header>
 
 {@render children()}
 

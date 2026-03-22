@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { getPassage, getSettings } from '$lib/context.svelte';
 	import Select from './Select.svelte';
+	import passagesData from '$lib/data.json';
+	import { getRandomItem } from '$lib';
 
 	const data = [
 		['WPM', '0'],
@@ -7,8 +10,17 @@
 		['Time', '0:60']
 	];
 
-	let difficulty = $state('hard');
-	let mode = $state('timed');
+	const settings = getSettings();
+	const passage = getPassage();
+
+	$effect(() => {
+		const passages = passagesData[settings.level];
+		const randomPassage = getRandomItem(passages).text;
+
+		if (settings.levelUpdated) {
+			passage.value = randomPassage;
+		}
+	});
 </script>
 
 <div class="space-y-3 sm:flex sm:items-center sm:justify-between sm:space-y-0">
@@ -23,7 +35,7 @@
 	<div class="flex justify-between sm:items-center sm:gap-3">
 		<Select
 			name="difficulty"
-			bind:value={difficulty}
+			bind:value={settings.level}
 			options={[
 				['Easy', 'easy'],
 				['Medium', 'medium'],
@@ -33,7 +45,7 @@
 		<div class="hidden w-0.75 bg-neutral-500/30 text-transparent lg:inline">|</div>
 		<Select
 			name="mode"
-			bind:value={mode}
+			bind:value={settings.mode}
 			options={[
 				['Timed(60s)', 'timed'],
 				['Passage', 'passage']
