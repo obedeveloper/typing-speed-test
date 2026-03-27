@@ -1,12 +1,15 @@
 <script lang="ts">
-	import { getPassage } from '$lib/context.svelte';
+	import { getPassage, getSettings } from '$lib/context.svelte';
 	import { testData } from '$lib/data.svelte';
 	import HeaderSec1 from './HeaderSec1.svelte';
 	import HeaderSec2 from './HeaderSec2.svelte';
 	import restartIcon from '$lib/assets/icon-restart.svg';
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 
 	const passage = $derived(getPassage().value);
 	const userInput = $derived(testData.userInput);
+	const mode = $derived(getSettings().mode);
 	let textArea: HTMLTextAreaElement;
 
 	const totalWords = $derived(userInput.length / 5);
@@ -15,6 +18,12 @@
 	$effect(() => {
 		testData.accuracy = getAccuracy();
 		testData.wpm = wpm;
+
+		if ((testData.time === 0 && mode === 'timed') || testData.userInput.length === passage.length) {
+			goto(resolve('/results')).then(() => {
+				testData.restart();
+			});
+		}
 	});
 
 	function getWPM() {
@@ -66,10 +75,15 @@
 		]}
 	>
 		<textarea
+			autocomplete="off"
 			bind:this={textArea}
 			bind:value={
 				() => testData.userInput,
 				(v) => {
+					if (v.length < testData.userInput.length) {
+						return;
+					}
+
 					if (v.length <= passage.length) {
 						testData.userInput = v;
 					}
